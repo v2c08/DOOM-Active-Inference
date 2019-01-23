@@ -1,0 +1,8 @@
+function set_precision(model_path, prec)
+m = matfile(model_path)
+prec
+m.Properties.Writable = true;
+m.beta = prec;
+m.beta
+end
+

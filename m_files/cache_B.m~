@@ -1,0 +1,21 @@
+function cache_B(run_iteration, model_loc)% states are from AI gym preproc
+
+MDP = load(model_loc);
+B = MDP.B;
+
+m = matfile(model_loc);
+m.Properties.Writable = true;
+
+Ns  = size(B{1},1);
+length_B = numel(B);
+
+if ~isfield(MDP, 'B_over_its')
+    B_over_its{run_iteration}.B = B;
+    m.B_over_its = B_over_its;
+else
+    B_over_its   =  MDP.B_over_its;
+    B_over_its{run_iteration}.B = B;
+    m.B_over_its = B_over_its;
+end
+
+end
